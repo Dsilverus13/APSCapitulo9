@@ -1,0 +1,14 @@
+load voz_256m.txt;
+x1 = voz_256m';
+Fs = 8000;
+N = 256;
+x1 = x1 .* hanning(N)';
+X1 = fft(x1);
+M1 = 2 * (2/N) * abs(X1);
+k = [0 : 31];
+f = (Fs/N) * k;
+stem(f, M1(1:32));
+title('Mag[X1]');
+xlabel('Hz');
+ylabel('mV');
+grid;
